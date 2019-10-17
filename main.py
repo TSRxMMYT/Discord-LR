@@ -76,12 +76,12 @@ def is_dark(ctx):
     return ctx.message.author.id == "514856260353392660"
 
 def is_shreyas(ctx):
-    return ctx.message.author.id == "514856260353392660"
+    return ctx.message.author.id == "634302278911655936"
 
 @client.event
 async def on_message(message):
     await client.process_commands(message)
-    channel = client.get_channel('574260577577205772')
+    channel = client.get_channel('634407045969477642')
     if message.server is None and message.author != client.user:
         await client.send_message(channel, '{} : {} : '.format(message.author.name, message.author.id) + message.content)
 
