@@ -17,7 +17,7 @@ import aiohttp
 
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
-client = commands.Bot(description="Blackfox Official Bot", command_prefix=commands.when_mentioned_or("^"), pm_help = True)
+client = commands.Bot(description="Discord LR Official", command_prefix=commands.when_mentioned_or("^"), pm_help = True)
 reddit = praw.Reddit(client_id='G-SK66FZT8at9g',
                      client_secret='DLqIkkdoD0K8xKpxuaMAhRscrS0',
                      user_agent='android:com.G-SK66FZT8at9g.SolarBot:v1.2.3 (by /u/LaidDownRepaer)')
@@ -29,7 +29,7 @@ async def status_task():
     while True:
         await client.change_presence(game=discord.Game(name='for ^help'))
         await asyncio.sleep(5)
-        await client.change_presence(game=discord.Game(name='Create by ❲reaperY❳'))
+        await client.change_presence(game=discord.Game(name='Create by ❲Discord LR❳'))
         await asyncio.sleep(5)
         await client.change_presence(game=discord.Game(name='with '+str(len(set(client.get_all_members())))+' users'))
         await asyncio.sleep(5)
@@ -69,7 +69,7 @@ async def on_ready():
     print('--------')
     print('--------')
     print('Started Our BOT')
-    print('Created by Blackfoxx')
+    print('Created by LordReaper')
     client.loop.create_task(status_task())
 	
 def is_dark(ctx):
@@ -130,7 +130,7 @@ async def on_reaction_add(reaction, user):
         embed.add_field(name = 'Setting up AutoPartner Channel(Admin Permission required)',value ='Using ``^setuppartner`` command create a channel named multiverse-partner and then you can use ^partner to partner with other servers.',inline = False)
         embed.add_field(name = 'Setting up Giveaway feature(Manage roles permission required) ',value ='Just add a role named ``Giveaways`` and give that role to user who wanna be giveaway manager. Then use ``^help`` and check giveaway commands.',inline = False)
         embed.add_field(name = 'Setting up Reaction Verification(Admin Permission required) ',value ='Just add a role named ``Verified`` then remove permission from everyone to send message in all channels. Also add permission of verified role to send message in chatting channels. Then use ``^setreactionverify`` it will automatically add a channel and post information about verification. **__Note__** **Sometimes it does not sends message in channel named #verify-for-chatting when this command is used so reuse that command in such case**',inline = False)
-        embed.add_field(name = 'Setting up Multiverse bot log(Admin Permission required) ',value ='Use ``^setuplog`` and it will automatically add a log channel and log all stuffs there.',inline = False)
+        embed.add_field(name = 'Setting up Discord LR bot log(Admin Permission required) ',value ='Use ``^setuplog`` and it will automatically add a log channel and log all stuffs there.',inline = False)
         await client.send_message(user,embed=embed)
         await asyncio.sleep(60)
         await client.delete_message(react_message)
@@ -167,7 +167,7 @@ async def on_reaction_add(reaction, user):
 @client.event
 async def on_member_join(member):
     for channel in member.server.channels:
-        if channel.name == '★彡-welcome-彡★':
+        if channel.name == '🙏⏐welcome':
             r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
             embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
             embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
@@ -176,7 +176,7 @@ async def on_member_join(member):
             embed.add_field(name='__Join position__', value='{}'.format(str(member.server.member_count)), inline=True)
             embed.add_field(name='Time of joining', value=member.joined_at)
             await client.send_message(channel, embed=embed)
-            role = discord.utils.get(member.server.roles, name='★彡-Guest-彡★')
+            role = discord.utils.get(member.server.roles, name='New Joined User')
             await client.add_roles(member, role)
 	
 @client.command(pass_context = True)
@@ -365,7 +365,7 @@ async def serverinvite(ctx):
     invitelinknew = await client.create_invite(destination = ctx.message.channel, xkcd = True, max_uses = 100)
     embedMsg=discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
     embedMsg.add_field(name="Discord Invite Link", value=invitelinknew)
-    embedMsg.set_footer(text="Copyright @ UK Soft")
+    embedMsg.set_footer(text="Copyright @ Discord LR")
     await client.send_message(ctx.message.channel, embed=embedMsg)
 	
 @client.command(pass_context = True)
@@ -414,7 +414,7 @@ async def mute(ctx, member: discord.Member=None, mutetime=None):
       await client.say("Muted **{}**".format(member.name))
       await client.send_message(member, "You are muted by {0} for {1} Minutes".format(ctx.message.author, output))
       for channel in member.server.channels:
-        if channel.name == '╰☆☆-blackfox-log-☆☆╮':
+        if channel.name == '╰☆☆-lr-log-☆☆╮':
             embed=discord.Embed(title="User Muted!", description="**{0}** was muted by **{1}** for {2} minutes!".format(member, ctx.message.author, output), color=0x37F60A)
             await client.send_message(channel, embed=embed)
             await asyncio.sleep(mutetime)
@@ -494,7 +494,7 @@ async def unmute(ctx, member: discord.Member=None):
       await client.remove_roles(member, role)
       await client.say("Unmuted **{}**".format(member))
       for channel in member.server.channels:
-        if channel.name == '╰☆☆-blackfox-log-☆☆╮':
+        if channel.name == '╰☆☆-lr-log-☆☆╮':
             embed=discord.Embed(title="User unmuted!", description="**{0}** was unmuted by **{1}**!".format(member, ctx.message.author), color=0xFD1600)
             await client.send_message(channel, embed=embed)
 	
@@ -509,7 +509,7 @@ async def access(ctx, member: discord.Member):
       await client.add_roles(member, role)
       await client.say("Gave access to {}".format(member))
       for channel in member.server.channels:
-        if channel.name == '╰☆☆-blackfox-log-☆☆╮':
+        if channel.name == '╰☆☆-lr-log-☆☆╮':
             embed=discord.Embed(title="User Got Access!", description="**{0}** got access from **{1}**!".format(member, ctx.message.author), color=0x020202)
             await client.send_message(channel, embed=embed)
             await asyncio.sleep(45*60)
@@ -524,7 +524,7 @@ async def setupwelcomer(ctx):
       server = ctx.message.server
       everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
       everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-      await client.create_channel(server, '★彡-welcome-彡★',everyone)
+      await client.create_channel(server, '🙏⏐welcome',everyone)
 
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)
@@ -535,11 +535,11 @@ async def setuppartner(ctx):
       server = ctx.message.server
       everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
       everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-      await client.create_channel(server, '★-blackfox-partner-★',everyone)
+      await client.create_channel(server, '★-discord-partner-★',everyone)
 
 @client.command(pass_context=True)
 async def partner(ctx, *, msg=None):
-    channel = discord.utils.get(client.get_all_channels(), name='★-blackfox-partner-★')
+    channel = discord.utils.get(client.get_all_channels(), name='★-discord-partner-★')
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     if not msg:
       await client.say('Please specify a partnership description to post')
@@ -561,7 +561,7 @@ async def setuplog(ctx):
       server = ctx.message.server
       everyone_perms = discord.PermissionOverwrite(send_messages=False, read_messages=True)
       everyone = discord.ChannelPermissions(target=server.default_role, overwrite=everyone_perms)
-      await client.create_channel(server, '╰☆☆-blackfox-log-☆☆╮',everyone)
+      await client.create_channel(server, '╰☆☆-lr-log-☆☆╮',everyone)
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)
@@ -619,7 +619,7 @@ async def unbanall(ctx):
       ban_list=await client.get_bans(server)
       await client.say('Unbanning {} members'.format(len(ban_list)))
       for channel in ctx.message.author.server.channels:
-        if channel.name == '╰☆☆-blackfox-log-☆☆╮':
+        if channel.name == '╰☆☆-lr-log-☆☆╮':
             embed=discord.Embed(title="All users are unbanned!", description="Members were unbanned by **{}**!".format(ctx.message.author), color=0x05F6E0)
             await client.send_message(channel, embed=embed)
       for member in ban_list:
@@ -713,7 +713,7 @@ async def warn(ctx, userName: discord.User=None,*, message:str=None):
       await client.send_message(userName, "You have been warned for: **{}**".format(message))
       await client.say(":warning: __**{0} Has Been Warned!**__ :warning: ** Reason:{1}** ".format(userName,message))
       for channel in userName.server.channels:
-        if channel.name == '╰☆☆-blackfox-log-☆☆╮':
+        if channel.name == '╰☆☆-lr-log-☆☆╮':
             embed=discord.Embed(title="User Warned!", description="{0} warned by {1} for {2}".format(userName, ctx.message.author, message), color=0x0521F6)
             await client.send_message(channel, embed=embed)      
 
@@ -752,7 +752,7 @@ async def help(ctx):
       embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
       embed.set_author(name='Help')
       embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
-      embed.add_field(name = '☆Play The Music To Use This `^helpmusic` Command For More Info☆ Having doubts? Join our server and clear your doubts. Server link:',value ='https://discord.gg/xhSHP6m',inline = False)
+      embed.add_field(name = '☆Play The Music To Use This `^helpmusic` Command For More Info☆ Having doubts? Join our server and clear your doubts. Server link:',value ='https://discord.gg/MPXUeJh',inline = False)
       embed.add_field(name = 'React with 🇲 ',value ='Explaines all the commands which are only usable by Those who has moderation permissions. Like- Manage Nicknames, Manage Messages, Kick/Ban Members,etc.',inline = False)
       embed.add_field(name = 'React with 🇬 ',value ='Explaines all the commands which are usable by everyone.',inline = False)
       embed.add_field(name = 'React with 🏵 ',value ='Explaines how to setup some stuffs like Giveaway feature and welcomer feature in your server',inline = False)
@@ -781,7 +781,7 @@ async def kick(ctx,user:discord.Member):
       await client.say(user.name+' was kicked. Good bye '+user.name+'!')
       await client.delete_message(ctx.message)
       for channel in user.server.channels:
-        if channel.name == '╰☆☆-blackfox-log-☆☆╮':
+        if channel.name == '╰☆☆-lr-log-☆☆╮':
             embed=discord.Embed(title="User kicked!", description="**{0}** is kicked by **{1}**!".format(user, ctx.message.author), color=0xFDE112)
             await client.send_message(channel, embed=embed)
         
@@ -801,7 +801,7 @@ async def ban(ctx,user:discord.Member):
       await client.ban(user)
       await client.say(user.name+' was banned. Good bye '+user.name+'!')
       for channel in member.server.channels:
-        if channel.name == '╰☆☆-blackfox-log-☆☆╮':
+        if channel.name == '╰☆☆-lr-log-☆☆╮':
             embed=discord.Embed(title="User banned!", description="**{0}** banned by **{1}**!".format(member, ctx.message.author), color=0x38761D)
             await client.send_message(channel, embed=embed)
 
@@ -813,7 +813,7 @@ async def unban(ctx, identification:str):
     try:
         await client.say(f'`{user}` has been unbanned from the server.')
         for channel in ctx.message.server.channels:
-          if channel.name == '╰☆☆-blackfox-log-☆☆╮':
+          if channel.name == '╰☆☆-lr-log-☆☆╮':
               embed=discord.Embed(title="User unbanned!", description="**{0}** unbanned by **{1}**!".format(user, ctx.message.author), color=0x38761D)
               await client.send_message(channel, embed=embed)
     except:
@@ -1235,7 +1235,7 @@ async def setnick(ctx, user: discord.Member=None, *, nickname=None):
       await client.change_nickname(user, nickname)
       await client.delete_message(ctx.message)
       for channel in user.server.channels:
-        if channel.name == '╰☆☆-blackfox-log-☆☆╮':
+        if channel.name == '╰☆☆-lr-log-☆☆╮':
             embed=discord.Embed(title="Changed Nickname of User!", description="**{0}** nickname was changed by **{1}**!".format(member, ctx.message.author), color=0x0521F6)
             await client.send_message(channel, embed=embed)
 
@@ -1273,7 +1273,7 @@ async def resetnick(ctx, user: discord.Member=None):
       await client.change_nickname(user, nick)
       await client.delete_message(ctx.message)
       for channel in user.server.channels:
-        if channel.name == '╰☆☆-blackfoxl-log-☆☆╮':
+        if channel.name == '╰☆☆-lr-log-☆☆╮':
             embed=discord.Embed(title="Reset Nickname of User!", description="**{0}** nickname was reset by **{1}**!".format(member, ctx.message.author), color=0x0521F6)
             await client.send_message(channel, embed=embed)
 
