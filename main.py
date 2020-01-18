@@ -29,7 +29,7 @@ async def status_task():
     while True:
         await client.change_presence(game=discord.Game(name='for ^help'))
         await asyncio.sleep(5)
-        await client.change_presence(game=discord.Game(name='Create by ❲Discord LR❳'))
+        await client.change_presence(game=discord.Game(name='Create by ❲TSRxMMyt❳'))
         await asyncio.sleep(5)
         await client.change_presence(game=discord.Game(name='with '+str(len(set(client.get_all_members())))+' users'))
         await asyncio.sleep(5)
@@ -67,7 +67,7 @@ async def on_ready():
     print('--------')
     print('--------')
     print('Started Our BOT')
-    print('Created by LordReaper')
+    print('Created by TSRxMMYT')
     client.loop.create_task(status_task())
 	
 def is_dark(ctx):
@@ -165,7 +165,7 @@ async def on_reaction_add(reaction, user):
 @client.event
 async def on_member_join(member):
     for channel in member.server.channels:
-        if channel.name == '🙏⏐welcome':
+        if channel.name == '➥ᴡᴇʟᴄᴏᴍᴇ🙏🏻':
             r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
             embed = discord.Embed(title=f'Welcome {member.name} to {member.server.name}', description='Do not forget to check rules and never try to break any one of them', color = discord.Color((r << 16) + (g << 8) + b))
             embed.add_field(name='__Thanks for joining__', value='**Hope you will be active here.**', inline=True)
